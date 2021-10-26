@@ -1,0 +1,24 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: laravel-in-kubernetes-scheduler
+spec:
+  schedule: "* * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: scheduler
+            image: registry.gitlab.com/laravel-in-kubernetes/laravel-app/laravel.io/cli:v0.0.1
+            command:
+              - php
+            args:
+              - artisan
+              - schedule:run
+            envFrom:
+              - configMapRef:
+                  name: laravel-in-kubernetes
+              - secretRef:
+                  name: laravel-in-kubernetes
+          restartPolicy: OnFailure
