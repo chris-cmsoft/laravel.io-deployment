@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: laravel-in-kubernetes-queue-worker-default
+  labels:
+    tier: backend
+    layer: queue-worker
+    queue: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      tier: backend
+      layer: queue-worker
+      queue: default
+  template:
+    metadata:
+      labels:
+        tier: backend
+        layer: queue-worker
+        queue: default
+    spec:
+      containers:
+        - name: queue-worker
+          image: registry.gitlab.com/laravel-in-kubernetes/laravel-app/laravel.io/cli:v0.0.1
+          command:
+            - php
+          args:
+            - artisan
+            - queue:work
+            - --queue=default
+            - --max-jobs=200
+          ports:
+            - containerPort: 9000
+          envFrom:
+            - configMapRef:
+                name: laravel-in-kubernetes
+            - secretRef:
+                name: laravel-in-kubernetes
