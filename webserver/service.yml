@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: laravel-in-kubernetes-webserver
+spec:
+  selector:
+    tier: backend
+    layer: webserver
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
