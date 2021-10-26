@@ -19,14 +19,14 @@ data:
   BROADCAST_DRIVER: "log"
   CACHE_DRIVER: "file"
   FILESYSTEM_DRIVER: "local"
-  QUEUE_CONNECTION: "sync"
+  QUEUE_CONNECTION: "redis"
 
   # Update the Session driver to Redis, based off part-2 of series
   SESSION_DRIVER: "redis"
   SESSION_LIFETIME: "120"
   MEMCACHED_HOST: "memcached"
-  REDIS_HOST: "redis"
-  REDIS_PORT: "6379"
+  REDIS_HOST: "laravel-in-kubernetes-redis-do-user-2867228-0.b.db.ondigitalocean.com"
+  REDIS_PORT: "25061"
   MAIL_MAILER: "smtp"
   MAIL_HOST: "mailhog"
   MAIL_PORT: "1025"
