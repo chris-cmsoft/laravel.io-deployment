@@ -4,7 +4,7 @@ metadata:
   name: laravel-in-kubernetes-webserver
   annotations:
     # We need to add the cluster issuer annotation
-    cert-manager.io/cluster-issuer: "laravel-in-kubernetes-staging"
+    cert-manager.io/cluster-issuer: "laravel-in-kubernetes-production"
 spec:
   tls:
   - hosts:
