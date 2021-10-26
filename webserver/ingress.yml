@@ -2,10 +2,18 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: laravel-in-kubernetes-webserver
+  annotations:
+    # We need to add the cluster issuer annotation
+    cert-manager.io/cluster-issuer: "laravel-in-kubernetes-staging"
 spec:
+  tls:
+  - hosts:
+    - laravel-in-kubernetes.chris-vermeulen.com
+    secretName: laravel-in-kubernetes-tls
   ingressClassName: nginx
   rules:
-  - http:
+  - host: laravel-in-kubernetes.chris-vermeulen.com
+    http:
       paths:
       - path: /
         pathType: Prefix
