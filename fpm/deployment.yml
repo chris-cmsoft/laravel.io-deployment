@@ -22,3 +22,8 @@ spec:
           image: registry.gitlab.com/laravel-in-kubernetes/laravel-app/laravel.io/fpm_server:v0.0.1
           ports:
             - containerPort: 9000
+          envFrom:
+            - configMapRef:
+                name: laravel-in-kubernetes
+            - secretRef:
+                name: laravel-in-kubernetes
