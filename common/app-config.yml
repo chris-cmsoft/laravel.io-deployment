@@ -25,7 +25,7 @@ data:
   SESSION_DRIVER: "redis"
   SESSION_LIFETIME: "120"
   MEMCACHED_HOST: "memcached"
-  REDIS_HOST: "laravel-in-kubernetes-redis-do-user-2867228-0.b.db.ondigitalocean.com"
+  REDIS_HOST: "tls://laravel-in-kubernetes-redis-do-user-2867228-0.b.db.ondigitalocean.com"
   REDIS_PORT: "25061"
   MAIL_MAILER: "smtp"
   MAIL_HOST: "mailhog"
