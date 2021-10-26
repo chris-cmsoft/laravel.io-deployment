@@ -17,6 +17,20 @@ spec:
         tier: backend
         layer: fpm
     spec:
+      initContainers:
+        - name: migrations
+          image: registry.gitlab.com/laravel-in-kubernetes/laravel-app/laravel.io/cli:v0.0.1
+          command:
+            - php
+          args:
+            - artisan
+            - migrate
+            - --force
+          envFrom:
+            - configMapRef:
+                name: laravel-in-kubernetes
+            - secretRef:
+                name: laravel-in-kubernetes
       containers:
         - name: fpm
           image: registry.gitlab.com/laravel-in-kubernetes/laravel-app/laravel.io/fpm_server:v0.0.1
